@@ -72,7 +72,7 @@ setup(
         ),
     namespace_packages=['zope', 'zope.app'],
     install_requires=[
-        'ZODB3',
+        'ZODB',
         'setuptools',
         'zope.app.publication',
         'zope.component >= 3.8.0',
