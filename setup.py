@@ -64,8 +64,8 @@ setup(
     package_dir={'': 'src'},
     extras_require=dict(
         test=[
-            'zope.componentvocabulary',
-            'zope.principalregistry',
+            'zope.componentvocabulary >= 2.0.0a1',
+            'zope.principalregistry >= 4.0.0a1',
             'zope.testing >= 3.10',
             'zope.testrunner',
             ]
@@ -83,9 +83,9 @@ setup(
         'zope.interface',
         'zope.processlifetime',
         'zope.security >= 3.6.0',
-        'zope.session',
-        'zope.site',
-        'zope.traversing',
+        'zope.session >=4.0.0a1',
+        'zope.site >= 4.0.0a1',
+        'zope.traversing >= 4.0.0a2',
         ],
     include_package_data=True,
     zip_safe=False,

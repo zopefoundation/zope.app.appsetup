@@ -19,9 +19,13 @@ import ZConfig
 import doctest
 import os
 import sys
+import re
 import transaction
 import unittest
-import urllib
+try:
+    from urllib.request import pathname2url
+except ImportError:
+    from urllib import pathname2url
 
 import zope.component
 
@@ -45,6 +49,7 @@ from zope.app.appsetup.errorlog import bootStrapSubscriber as errorlogBootStrapS
 from zope.app.appsetup.session import bootStrapSubscriber as sessionBootstrapSubscriber
 from zope.session.interfaces import IClientIdManager
 from zope.session.interfaces import ISessionDataContainer
+from zope.testing import renormalizing
 
 from zope.component.testlayer import ZCMLFileLayer
 
@@ -215,7 +220,7 @@ class TestConfigurationSchema(unittest.TestCase):
         self.schema_dir = os.path.join(self.here, "schema")
 
     def path2url(self, path):
-        urlpath = urllib.pathname2url(path)
+        urlpath = pathname2url(path)
         while urlpath.startswith("/"):
             urlpath = urlpath[1:]
         return "file:///" + urlpath
@@ -262,12 +267,23 @@ def test_suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(TestBootstrapSubscriber))
     suite.addTest(unittest.makeSuite(TestConfigurationSchema))
+
+    rules = [(re.compile("u('.*?')"), r"\1"),
+             (re.compile('u(".*?")'), r"\1"),
+            ]
+    checker = renormalizing.RENormalizing(rules)
+    dtflags =(doctest.ELLIPSIS +
+              doctest.NORMALIZE_WHITESPACE +
+              doctest.REPORT_NDIFF)
+
     for module in ['zope.app.appsetup.appsetup',]:
         test = doctest.DocTestSuite(module)
         test.layer = layer
         suite.addTest(test)
     for filename in ['bootstrap.txt', 'product.txt',]:
-        test = doctest.DocFileSuite(filename)
+        test = doctest.DocFileSuite(filename,
+                                    optionflags=dtflags,
+                                    checker=checker)
         test.layer = layer
         suite.addTest(test)
 
@@ -276,9 +292,7 @@ def test_suite():
     suite.addTest(test)
     suite.addTest(doctest.DocFileSuite(
         'testlayer.txt',
-         optionflags=(doctest.ELLIPSIS +
-                      doctest.NORMALIZE_WHITESPACE +
-                      doctest.REPORT_NDIFF)))
+         optionflags=dtflags))
 
     return suite
 

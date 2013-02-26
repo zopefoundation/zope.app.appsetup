@@ -46,7 +46,7 @@ def config(file, features=(), execute=True):
       >>> import tempfile
       >>> fn = tempfile.mktemp('.zcml')
       >>> zcml = open(fn, 'w')
-      >>> zcml.write('''
+      >>> written = zcml.write('''
       ... <configure xmlns:meta="http://namespaces.zope.org/meta"
       ...            xmlns:zcml="http://namespaces.zope.org/zcml">
       ...   <meta:provides feature="myFeature" />
@@ -185,8 +185,7 @@ def multi_database(database_factories):
     [True, True, True]
 
     >>> items = m.items()
-    >>> items.sort()
-    >>> items
+    >>> sorted(list(items))
     [('', DB(3)), ('x', DB(1)), ('y', DB(2))]
 
     Each of the databases is registered as an IDatabase utility:

@@ -15,6 +15,7 @@
 
 $Id$
 """
+from __future__ import print_function
 __docformat__ = 'restructuredtext'
 
 from zope.app.publication.zopepublication import ZopePublication
@@ -58,9 +59,10 @@ def loadApplication(args=None):
 def main(args=None):
     db = loadApplication(args)
     if "PYTHONSTARTUP" in os.environ:
-        execfile(os.environ["PYTHONSTARTUP"])
+        startup = os.environ["PYTHONSTARTUP"]
+        exec(compile(open(startup).read(), startup, 'exec'))
     sys.modules['__main__'].root = db.open().root()[ZopePublication.root_name]
-    print 'The application root is known as `root`.'
+    print('The application root is known as `root`.')
     os.environ["PYTHONINSPECT"] = "true"
 
 
