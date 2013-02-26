@@ -119,7 +119,7 @@ def addUtility(root_folder, utility_type, utility_factory,
     utility = package[name]
 
     # Set additional attributes on the utility
-    for k, v in kw.iteritems():
+    for k, v in kw.items():
         setattr(utility, k, v)
     return utility
 

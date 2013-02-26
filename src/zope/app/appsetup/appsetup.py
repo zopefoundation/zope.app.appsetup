@@ -26,8 +26,8 @@ from zope.security.interfaces import IParticipation
 from zope.security.management import system_user
 import zope.processlifetime
 
+@zope.interface.implementer(IParticipation)
 class SystemConfigurationParticipation(object):
-    zope.interface.implements(IParticipation)
 
     principal = system_user
     interaction = None
@@ -129,7 +129,7 @@ def database(db):
         if db.endswith('.py'):
             # Python source, exec it
             globals = {}
-            execfile(db, globals)
+            exec(compile(open(db).read(), db, 'exec'), globals)
             if 'DB' in globals:
                 db = globals['DB']
             else:

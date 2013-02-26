@@ -77,7 +77,7 @@ setup(
         'zope.app.publication',
         'zope.component >= 3.8.0',
         'zope.configuration',
-        'zope.container',
+        'zope.container >= 4.0.0a2',
         'zope.error',
         'zope.event',
         'zope.interface',
