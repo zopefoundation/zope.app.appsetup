@@ -78,7 +78,7 @@ setup(
         'zope.event',
         'zope.interface',
         'zope.processlifetime',
-        'zope.security >= 3.6.0',
+        'zope.security >= 4.0.0a2',
         'zope.session >=4.0.0a1',
         'zope.site >= 4.0.0a1',
         'zope.traversing >= 4.0.0a2',
