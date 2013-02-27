@@ -17,12 +17,8 @@
 # Zope Toolkit policies as described by this documentation.
 ##############################################################################
 """Setup for zope.app.appsetup package
-
-$Id$
 """
-
 import os
-
 from setuptools import setup, find_packages
 
 def read(*rnames):
@@ -30,7 +26,7 @@ def read(*rnames):
 
 setup(
     name='zope.app.appsetup',
-    version='3.16.1dev',
+    version='4.0.0a1.dev',
     author='Zope Corporation and Contributors',
     author_email='zope-dev@zope.org',
     description="Zope app setup helper",

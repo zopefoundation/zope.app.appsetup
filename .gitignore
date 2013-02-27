@@ -1,5 +1,12 @@
+*.pyc
+*.so
+*.dll
+__pycache__
+src/*.egg-info
+
 .installed.cfg
 .tox
 bin
+build
 develop-eggs
-src/zope.app.appsetup.egg-info/
+parts
