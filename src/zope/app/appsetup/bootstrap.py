@@ -15,12 +15,7 @@
 
 This module contains code to bootstrap a Zope3 instance.  For example
 it makes sure a root folder exists and creates one if necessary.
-
-$Id$
 """
-__docformat__ = 'restructuredtext'
-
-
 import logging
 import transaction
 import warnings
