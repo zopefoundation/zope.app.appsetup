@@ -1,10 +1,10 @@
 Changelog
 =========
 
-3.16.1 (unreleased)
+3.17.0 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Add dependency on ``zdaemon`` (split off from ``ZODB``).
 
 
 3.16.0 (2011-01-27)

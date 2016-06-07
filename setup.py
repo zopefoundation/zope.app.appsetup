@@ -30,7 +30,7 @@ def read(*rnames):
 
 setup(
     name='zope.app.appsetup',
-    version='3.16.1dev',
+    version='3.17.dev0',
     author='Zope Corporation and Contributors',
     author_email='zope-dev@zope.org',
     description="Zope app setup helper",
@@ -73,6 +73,7 @@ setup(
     namespace_packages=['zope', 'zope.app'],
     install_requires=[
         'ZODB',
+        'zdaemon',
         'setuptools',
         'zope.app.publication',
         'zope.component >= 3.8.0',
