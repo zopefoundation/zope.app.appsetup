@@ -8,6 +8,8 @@ Changelog
 
 - Claim support for Python 3.4, 3.5 and PyPy.
 
+- Drop Python 2.6 support.
+
 4.0.0a1 (2013-03-03)
 --------------------
 
