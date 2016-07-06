@@ -77,6 +77,7 @@ setup(
         ],
     install_requires=[
         'ZODB',
+        'zdaemon',
         'setuptools',
         'zope.app.publication',
         'zope.component >= 3.8.0',

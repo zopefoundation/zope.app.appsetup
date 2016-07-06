@@ -4,7 +4,7 @@ Changelog
 4.0.0a2 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Add dependency on ``zdaemon`` (split off from ``ZODB``).
 
 
 4.0.0a1 (2013-03-03)
