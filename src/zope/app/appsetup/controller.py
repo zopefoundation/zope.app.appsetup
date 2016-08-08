@@ -30,8 +30,8 @@ class ZopectlCmd(zdaemon.zdctl.ZDCmd):
         os.system(cmdline)
 
     def help_debug(self):
-        print "debug -- Initialize the Zope application, providing a"
-        print "         debugger object at an interactive Python prompt."
+        print("debug -- Initialize the Zope application, providing a")
+        print("         debugger object at an interactive Python prompt.")
 
     def do_run(self, arg):
         cmdline = "%s %s" % (
@@ -39,9 +39,9 @@ class ZopectlCmd(zdaemon.zdctl.ZDCmd):
         os.system(cmdline)
 
     def help_run(self):
-        print "run <script> [args] -- run a Python script with the Zope "
-        print "                       environment set up.  The script has "
-        print "                       'root' exposed as the root container."
+        print("run <script> [args] -- run a Python script with the Zope ")
+        print("                       environment set up.  The script has ")
+        print("                       'root' exposed as the root container.")
 
 
 def main(args=None, options=None, cmdclass=ZopectlCmd):

@@ -17,36 +17,34 @@
 # Zope Toolkit policies as described by this documentation.
 ##############################################################################
 """Setup for zope.app.appsetup package
-
-$Id$
 """
-
 import os
-
 from setuptools import setup, find_packages
 
+
 def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+    with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
+        return f.read()
 
 setup(
     name='zope.app.appsetup',
-    version='3.17.dev0',
+    version='4.0.0a2.dev0',
     author='Zope Corporation and Contributors',
     author_email='zope-dev@zope.org',
     description="Zope app setup helper",
     long_description=(
-        read('README.txt')
-        + '\n\n' +
-        '.. contents::'
-        + '\n\n' +
-        read('src', 'zope', 'app', 'appsetup', 'bootstrap.txt')
-        + '\n\n' +
-        read('src', 'zope', 'app', 'appsetup', 'debug.txt')
-        + '\n\n' +
-        read('src', 'zope', 'app', 'appsetup', 'product.txt')
-        + '\n\n' +
+        read('README.txt') +
+        '\n\n' +
+        '.. contents::' +
+        '\n\n' +
+        read('src', 'zope', 'app', 'appsetup', 'bootstrap.txt') +
+        '\n\n' +
+        read('src', 'zope', 'app', 'appsetup', 'debug.txt') +
+        '\n\n' +
+        read('src', 'zope', 'app', 'appsetup', 'product.txt') +
+        '\n\n' +
         read('CHANGES.txt')
-        ),
+    ),
     license='ZPL 2.1',
     keywords="zope3 app setup",
     classifiers=[
@@ -54,7 +52,15 @@ setup(
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Zope Public License',
-        'Programming Language :: Python',
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: Implementation',
+        'Programming Language :: Python :: Implementation :: CPython',
+        'Programming Language :: Python :: Implementation :: PyPy',
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Topic :: Internet :: WWW/HTTP',
@@ -62,36 +68,48 @@ setup(
     url='http://pypi.python.org/pypi/zope.app.appsetup',
     packages=find_packages('src'),
     package_dir={'': 'src'},
+    namespace_packages=['zope', 'zope.app'],
     extras_require=dict(
         test=[
-            'zope.componentvocabulary',
-            'zope.principalregistry',
+            'zope.componentvocabulary >= 2.0.0a1',
+            'zope.principalregistry >= 4.0.0a1',
             'zope.testing >= 3.10',
             'zope.testrunner',
-            ]
-        ),
-    namespace_packages=['zope', 'zope.app'],
+        ]
+    ),
+    setup_requires=[
+        'eggtestinfo',
+        'zope.testrunner',
+    ],
     install_requires=[
         'ZODB',
         'zdaemon',
         'setuptools',
-        'zope.app.publication',
+        'zope.app.publication >= 4.0',
         'zope.component >= 3.8.0',
         'zope.configuration',
-        'zope.container',
+        'zope.container >= 4.0.0a2',
         'zope.error',
         'zope.event',
         'zope.interface',
         'zope.processlifetime',
-        'zope.security >= 3.6.0',
-        'zope.session',
-        'zope.site',
-        'zope.traversing',
-        ],
+        'zope.security >= 4.0.0a2',
+        'zope.session >=4.0.0a1',
+        'zope.site >= 4.0.0a1',
+        'zope.traversing >= 4.0.0a2',
+    ],
+    tests_require=[
+        'zope.componentvocabulary >= 2.0.0a1',
+        'zope.principalregistry >= 4.0.0a1',
+        'zope.testing >= 3.10',
+        'zope.testrunner',
+    ],
+    test_suite='zope.app.appsetup.tests.test_suite',
+    test_loader='zope.testrunner.eggsupport:SkipLayers',
     include_package_data=True,
     zip_safe=False,
-    entry_points = """
+    entry_points="""
         [console_scripts]
         debug = zope.app.appsetup.debug:main
         """,
-    )
+)

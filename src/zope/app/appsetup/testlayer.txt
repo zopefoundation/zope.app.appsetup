@@ -79,8 +79,8 @@ We start with a derived layer, based on ZODBLayer that has some setup code:
   ...         transaction.commit()
 
   >>> layer = CustomZODBLayer(testpackage)
-  >>> layer
-  <CustomZODBLayer object at ...>
+  >>> layer.__class__
+  <class 'CustomZODBLayer'>
 
 Now, when running tests in this layer, each test sees the prepopulated
 database but is still isolated from other tests' changes:

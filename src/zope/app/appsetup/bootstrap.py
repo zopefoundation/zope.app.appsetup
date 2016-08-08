@@ -15,12 +15,7 @@
 
 This module contains code to bootstrap a Zope3 instance.  For example
 it makes sure a root folder exists and creates one if necessary.
-
-$Id$
 """
-__docformat__ = 'restructuredtext'
-
-
 import logging
 import transaction
 import warnings
@@ -119,7 +114,7 @@ def addUtility(root_folder, utility_type, utility_factory,
     utility = package[name]
 
     # Set additional attributes on the utility
-    for k, v in kw.iteritems():
+    for k, v in kw.items():
         setattr(utility, k, v)
     return utility
 

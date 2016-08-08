@@ -8,6 +8,7 @@ database connection).
 Let's define a helper to run the debug script and trap SystemExit exceptions
 that would otherwise hide the output
 
+    >>> from __future__ import print_function
     >>> import sys
     >>> from zope.app.appsetup import debug
     >>> def run(*args):
@@ -15,8 +16,8 @@ that would otherwise hide the output
     ...     sys.stderr = sys.stdout
     ...     try:
     ...         debug.main(args)
-    ...     except SystemExit, e:
-    ...         print "(exited with status %d)" % e.code
+    ...     except SystemExit as e:
+    ...         print("(exited with status %d)" % e.code)
 
 If you call the script with no arguments, it displays a brief error message
 on stderr
