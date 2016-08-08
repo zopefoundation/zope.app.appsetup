@@ -1,8 +1,8 @@
 Changelog
 =========
 
-4.0.0a2 (unreleased)
---------------------
+4.0.0 (2016-08-08)
+------------------
 
 - Add dependency on ``zdaemon`` (split off from ``ZODB``).
 
