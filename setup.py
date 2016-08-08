@@ -85,7 +85,7 @@ setup(
         'ZODB',
         'zdaemon',
         'setuptools',
-        'zope.app.publication',
+        'zope.app.publication >= 4.0',
         'zope.component >= 3.8.0',
         'zope.configuration',
         'zope.container >= 4.0.0a2',

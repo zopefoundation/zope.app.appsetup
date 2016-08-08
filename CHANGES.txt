@@ -6,7 +6,8 @@ Changelog
 
 - Add dependency on ``zdaemon`` (split off from ``ZODB``).
 
-- Claim support for Python 3.4, 3.5 and PyPy.
+- Claim support for Python 3.4, 3.5 and PyPy which requires
+  ``zope.app.publication`` >= 4.0.
 
 - Drop Python 2.6 support.
 
