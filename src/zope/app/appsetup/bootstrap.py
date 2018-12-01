@@ -180,7 +180,7 @@ def checkSecurityPolicy(event):
     was refactored and now it needs to be included from site.zcml.
     """
     if getSecurityPolicy() is ParanoidSecurityPolicy:
-        logging.getLogger('zope.app.appsetup').warn(
+        logging.getLogger('zope.app.appsetup').warning(
             'Security policy is not configured.\n'
             'Please make sure that securitypolicy.zcml is included'
             ' in site.zcml immediately\n'

@@ -10,8 +10,8 @@ object.  It subscribes to DatabaseOpened events:
     >>> from zope.app.appsetup import bootstrap
     >>> import zope.processlifetime
 
-    >>> from ZODB.tests import util
-    >>> db = util.DB()
+    >>> from ZODB.MappingStorage import DB
+    >>> db = DB()
     >>> bootstrap.bootStrapSubscriber(zope.processlifetime.DatabaseOpened(db))
 
 The subscriber makes sure that there is a root folder:

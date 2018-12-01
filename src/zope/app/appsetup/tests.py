@@ -27,7 +27,7 @@ except ImportError:
 
 import zope.component
 
-from ZODB.tests.util import DB
+from ZODB.MappingStorage import DB
 from zope.traversing.api import traverse, getPath
 from zope.error.interfaces import IErrorReportingUtility
 from zope.error.error import ErrorReportingUtility
