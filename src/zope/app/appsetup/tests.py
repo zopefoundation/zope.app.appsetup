@@ -103,7 +103,7 @@ class TestBootstrapSubscriber(unittest.TestCase):
         cx = self.db.open()
         root = cx.root()
         root_folder = root.get(ZopePublication.root_name, None)
-        self.assert_(IRootFolder.providedBy(root_folder))
+        self.assertTrue(IRootFolder.providedBy(root_folder))
         package_name = '/++etc++site/default'
         traverse(root_folder, package_name)
         cx.close()
@@ -124,7 +124,7 @@ class TestBootstrapSubscriber(unittest.TestCase):
                                                 name='ErrorReporting',
                                                 context=sub_folder)
         got_path = getPath(got_utility)
-        self.assertEquals(
+        self.assertEqual(
             "/sub_folder/++etc++site/default/ErrorReporting", got_path)
 
     def test_ensureUtility(self):
@@ -162,9 +162,9 @@ class TestBootstrapSubscriber(unittest.TestCase):
             package_name = '/++etc++site/default'
             package = traverse(self.root_folder, package_name)
 
-            self.assert_(IErrorReportingUtility.providedBy(
+            self.assertTrue(IErrorReportingUtility.providedBy(
                 traverse(package, 'ErrorReporting')))
-            self.assert_(IErrorReportingUtility.providedBy(
+            self.assertTrue(IErrorReportingUtility.providedBy(
                 traverse(package, 'ErrorReporting2')))
             transaction.commit()
 
@@ -186,7 +186,7 @@ class TestBootstrapSubscriber(unittest.TestCase):
 
         got_utility = zope.component.getUtility(IErrorReportingUtility,
                                                 context=root_folder)
-        self.failUnless(IErrorReportingUtility.providedBy(got_utility))
+        self.assertTrue(IErrorReportingUtility.providedBy(got_utility))
         # we need to close again in the end
         connection.close()
 
@@ -201,11 +201,11 @@ class TestBootstrapSubscriber(unittest.TestCase):
 
         got_utility = zope.component.getUtility(IClientIdManager,
                                                 context=root_folder)
-        self.failUnless(IClientIdManager.providedBy(got_utility))
+        self.assertTrue(IClientIdManager.providedBy(got_utility))
 
         got_utility = zope.component.getUtility(ISessionDataContainer,
                                                 context=root_folder)
-        self.failUnless(ISessionDataContainer.providedBy(got_utility))
+        self.assertTrue(ISessionDataContainer.providedBy(got_utility))
 
         # we need to close again in the end
         connection.close()
