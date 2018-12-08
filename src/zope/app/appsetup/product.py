@@ -1,8 +1,4 @@
-"""Access to product-specific configuration.
-
-"""
-__docformat__ = "reStructuredText"
-
+"""Access to product-specific configuration."""
 import ZConfig
 import os.path
 
@@ -15,7 +11,6 @@ except ImportError:
     pass
 else:
     zope.testing.cleanup.addCleanUp(_configs.clear)
-        
 
 
 def getProductConfiguration(name):

@@ -11,14 +11,9 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Zope Application Server setup package
+"""Zope Application Server setup package."""
+from zope.app.appsetup.appsetup import config, database  # noqa: F401
 
-$Id$
-"""
-__docformat__ = 'restructuredtext'
-
-from zope.app.appsetup.appsetup import config, database
-
-#BBB
-from zope.app.appsetup.interfaces import IDatabaseOpenedEvent, DatabaseOpened
-from zope.app.appsetup.interfaces import IProcessStartingEvent, ProcessStarting
+# BBB
+from zope.app.appsetup.interfaces import IDatabaseOpenedEvent, DatabaseOpened  # noqa: F401,E501
+from zope.app.appsetup.interfaces import IProcessStartingEvent, ProcessStarting  # noqa: F401,E501

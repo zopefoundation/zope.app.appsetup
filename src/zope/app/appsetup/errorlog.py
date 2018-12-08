@@ -11,10 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Bootstrap code for error reporting utility.
-
-$Id: bootstrap.py 70794 2006-10-19 04:29:42Z baijum $
-"""
+"""Bootstrap code for error reporting utility."""
 
 import transaction
 
@@ -23,12 +20,12 @@ from zope.error.interfaces import IErrorReportingUtility
 
 from zope.app.appsetup.bootstrap import ensureUtility, getInformationFromEvent
 
+
 def bootStrapSubscriber(event):
     """Subscriber to the IDataBaseOpenedEvent
 
     Create utility at that time if not yet present
     """
-
     db, connection, root, root_folder = getInformationFromEvent(event)
 
     ensureUtility(root_folder, IErrorReportingUtility, '',

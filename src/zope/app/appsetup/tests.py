@@ -11,8 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Bootstrap tests
-"""
+"""Bootstrap tests"""
 import ZConfig
 import doctest
 import os
@@ -32,7 +31,6 @@ from zope.traversing.api import traverse, getPath
 from zope.error.interfaces import IErrorReportingUtility
 from zope.error.error import ErrorReportingUtility
 
-from zope.site import hooks
 from zope.site.folder import rootFolder, Folder
 from zope.site.interfaces import IRootFolder
 from zope.app.publication.zopepublication import ZopePublication
@@ -40,11 +38,10 @@ from zope.site.site import LocalSiteManager
 
 import zope.app.appsetup
 from zope.app.appsetup.bootstrap import bootStrapSubscriber
-from zope.app.appsetup.bootstrap import getInformationFromEvent, \
-     ensureObject, ensureUtility
+from zope.app.appsetup.bootstrap import getInformationFromEvent, ensureUtility
 from zope.processlifetime import DatabaseOpened
-from zope.app.appsetup.errorlog import bootStrapSubscriber as errorlogBootStrapSubscriber
-from zope.app.appsetup.session import bootStrapSubscriber as sessionBootstrapSubscriber
+from zope.app.appsetup.errorlog import bootStrapSubscriber as errorlogBootStrapSubscriber  # noqa: E501
+from zope.app.appsetup.session import bootStrapSubscriber as sessionBootstrapSubscriber  # noqa: E501
 from zope.session.interfaces import IClientIdManager
 from zope.session.interfaces import ISessionDataContainer
 from zope.testing import renormalizing
@@ -53,14 +50,16 @@ from zope.component.testlayer import ZCMLFileLayer
 
 layer = ZCMLFileLayer(zope.app.appsetup)
 
+
 class EventStub(object):
 
     def __init__(self, db):
         self.database = db
 
 #
-# TODO: some methods from the boostap module are not tested
+# TODO: some methods from the bootstrap module are not tested
 #
+
 
 class TestBootstrapSubscriber(unittest.TestCase):
 
@@ -106,7 +105,7 @@ class TestBootstrapSubscriber(unittest.TestCase):
         root_folder = root.get(ZopePublication.root_name, None)
         self.assert_(IRootFolder.providedBy(root_folder))
         package_name = '/++etc++site/default'
-        package = traverse(root_folder, package_name)
+        traverse(root_folder, package_name)
         cx.close()
 
     def test_ensureUtilityForSubSite(self):
@@ -117,15 +116,16 @@ class TestBootstrapSubscriber(unittest.TestCase):
 
         sub_folder = root_folder['sub_folder']
         ensureUtility(sub_folder, IErrorReportingUtility,
-                     'ErrorReporting', ErrorReportingUtility,
-                     'ErrorReporting')
+                      'ErrorReporting', ErrorReportingUtility,
+                      'ErrorReporting')
 
         # Make sure it was created on the sub folder, not the root folder
         got_utility = zope.component.getUtility(IErrorReportingUtility,
                                                 name='ErrorReporting',
                                                 context=sub_folder)
         got_path = getPath(got_utility)
-        self.assertEquals("/sub_folder/++etc++site/default/ErrorReporting", got_path)
+        self.assertEquals(
+            "/sub_folder/++etc++site/default/ErrorReporting", got_path)
 
     def test_ensureUtility(self):
         self.createRFAndSM()
@@ -143,7 +143,7 @@ class TestBootstrapSubscriber(unittest.TestCase):
             utility2 = ensureUtility(root_folder, IErrorReportingUtility,
                                      'ErrorReporting2', ErrorReportingUtility,
                                      'ErrorReporting2')
-            if utility != None:
+            if utility is not None:
                 name = utility.__name__
                 name2 = utility2.__name__
             else:
@@ -226,13 +226,12 @@ class TestConfigurationSchema(unittest.TestCase):
     def test_productconfig_xml(self):
         path = os.path.join(self.schema_dir, "productconfig.xml")
         url = self.path2url(path)
-        schema = ZConfig.loadSchema(url)
+        ZConfig.loadSchema(url)
 
     def test_schema_xml(self):
         path = os.path.join(self.schema_dir, "schema.xml")
         url = self.path2url(path)
-        schema = ZConfig.loadSchema(url)
-
+        ZConfig.loadSchema(url)
 
 
 class DebugLayer(ZCMLFileLayer):
@@ -266,19 +265,20 @@ def test_suite():
     suite.addTest(unittest.makeSuite(TestBootstrapSubscriber))
     suite.addTest(unittest.makeSuite(TestConfigurationSchema))
 
-    rules = [(re.compile("u('.*?')"), r"\1"),
-             (re.compile('u(".*?")'), r"\1"),
-            ]
+    rules = [
+        (re.compile("u('.*?')"), r"\1"),
+        (re.compile('u(".*?")'), r"\1"),
+    ]
     checker = renormalizing.RENormalizing(rules)
-    dtflags =(doctest.ELLIPSIS +
-              doctest.NORMALIZE_WHITESPACE +
-              doctest.REPORT_NDIFF)
+    dtflags = (
+        doctest.ELLIPSIS
+        | doctest.NORMALIZE_WHITESPACE
+        | doctest.REPORT_NDIFF)
 
-    for module in ['zope.app.appsetup.appsetup',]:
-        test = doctest.DocTestSuite(module)
-        test.layer = layer
-        suite.addTest(test)
-    for filename in ['bootstrap.txt', 'product.txt',]:
+    test = doctest.DocTestSuite('zope.app.appsetup.appsetup')
+    test.layer = layer
+    suite.addTest(test)
+    for filename in ['bootstrap.txt', 'product.txt']:
         test = doctest.DocFileSuite(filename,
                                     optionflags=dtflags,
                                     checker=checker)
@@ -290,9 +290,6 @@ def test_suite():
     suite.addTest(test)
     suite.addTest(doctest.DocFileSuite(
         'testlayer.txt',
-         optionflags=dtflags))
+        optionflags=dtflags))
 
     return suite
-
-if __name__ == '__main__':
-    unittest.main()
