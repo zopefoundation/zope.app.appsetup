@@ -60,7 +60,8 @@ def main(args=None):
     db = loadApplication(args)
     if "PYTHONSTARTUP" in os.environ:
         startup = os.environ["PYTHONSTARTUP"]
-        exec(compile(open(startup).read(), startup, 'exec'))
+        with open(startup) as s:
+            exec(compile(s.read(), startup, 'exec'))
     sys.modules['__main__'].root = db.open().root()[ZopePublication.root_name]
     print('The application root is known as `root`.')
     os.environ["PYTHONINSPECT"] = "true"

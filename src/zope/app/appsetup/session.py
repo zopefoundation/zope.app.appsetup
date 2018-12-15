@@ -11,10 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Bootstrap code for sessions.
-
-$Id$
-"""
+"""Bootstrap code for sessions."""
 
 import transaction
 
@@ -24,24 +21,22 @@ from zope.session.interfaces import IClientIdManager, ISessionDataContainer
 from zope.session.http import CookieClientIdManager
 from zope.session.session import PersistentSessionDataContainer
 
+
 def bootStrapSubscriber(event):
     """Subscriber to the IDataBaseOpenedEvent
 
     Create utility at that time if not yet present
     """
-
     db, connection, root, root_folder = getInformationFromEvent(event)
 
     ensureUtility(
         root_folder,
         IClientIdManager, 'CookieClientIdManager',
-        CookieClientIdManager,
-        )
+        CookieClientIdManager)
     ensureUtility(
         root_folder,
         ISessionDataContainer, 'PersistentSessionDataContainer',
-        PersistentSessionDataContainer,
-        )
+        PersistentSessionDataContainer)
 
     transaction.commit()
     connection.close()

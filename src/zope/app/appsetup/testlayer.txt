@@ -32,18 +32,18 @@ working database::
   ...        root = self.layer.getRootFolder()
   ...        root['object'] = testobject.TestObject()
   ...        transaction.commit()
-  ...        self.failUnless('object' in root)
+  ...        self.assertIn('object', root)
   ...    def testNoMoreObjectInDB(self):
   ...        root = self.layer.getRootFolder()
-  ...        self.failIf('object' in root)
+  ...        self.assertNotIn('object', root)
   ...    def testApplicationInDB(self):
   ...        root = self.layer.getRootFolder()
-  ...        self.assertEquals(
+  ...        self.assertEqual(
   ...            repr(root.__class__), "<class 'zope.site.folder.Folder'>")
   ...    def testDBRegistered(self):
   ...        root = self.layer.getRootFolder()
   ...        db = component.getUtility(IDatabase, name='main')
-  ...        self.assertEquals(db, root._p_jar.db())
+  ...        self.assertEqual(db, root._p_jar.db())
 
 We define a suite with our test:
 
@@ -89,12 +89,12 @@ database but is still isolated from other tests' changes:
   ...     layer = layer
   ...     def test_test1(self):
   ...         root = self.layer.getRootFolder()
-  ...         self.assertEquals(1, len(root))
+  ...         self.assertEqual(1, len(root))
   ...         root['bar'] = 1
   ...         transaction.commit()
   ...     def test_test2(self):
   ...         root = self.layer.getRootFolder()
-  ...         self.assertEquals(1, len(root))
+  ...         self.assertEqual(1, len(root))
   ...         root['baz'] = 1
   ...         transaction.commit()
 

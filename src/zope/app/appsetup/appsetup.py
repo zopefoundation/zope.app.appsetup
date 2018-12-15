@@ -11,12 +11,7 @@
 # FOR A PARTICULAR PURPOSE.
 #
 ##############################################################################
-"""Code to initialize the application server
-
-$Id$
-"""
-__docformat__ = 'restructuredtext'
-
+"""Code to initialize the application server."""
 import ZODB.ActivityMonitor
 import ZODB.interfaces
 import zope.interface
@@ -26,6 +21,7 @@ from zope.security.interfaces import IParticipation
 from zope.security.management import system_user
 import zope.processlifetime
 
+
 @zope.interface.implementer(IParticipation)
 class SystemConfigurationParticipation(object):
 
@@ -34,6 +30,8 @@ class SystemConfigurationParticipation(object):
 
 
 _configured = False
+
+
 def config(file, features=(), execute=True):
     r"""Execute the ZCML configuration file.
 
@@ -225,12 +223,18 @@ def multi_database(database_factories):
 
 
 __config_context = None
+
+
 def getConfigContext():
     return __config_context
 
+
 __config_source = None
+
+
 def getConfigSource():
     return __config_source
+
 
 def reset():
     global _configured
@@ -241,6 +245,7 @@ def reset():
 
     global __config_context
     __config_context = None
+
 
 try:
     import zope.testing.cleanup

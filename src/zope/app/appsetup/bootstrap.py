@@ -34,10 +34,10 @@ from zope.traversing.api import traverse
 
 _marker = object()
 
+
 def ensureObject(root_folder, object_name, object_type, object_factory,
                  asObject=_marker):
-    """Check that there's a basic object in the site
-    manager. If not, add one.
+    """Check that there's a basic object in the site manager. If not, add one.
 
     Return the name abdded, if we added an object, otherwise None.
     """
@@ -46,9 +46,9 @@ def ensureObject(root_folder, object_name, object_type, object_factory,
                       "removed in Zope 3.6", DeprecationWarning, 2)
 
     package = getSiteManagerDefault(root_folder)
-    valid_objects = [ name
-                      for name in package
-                      if object_type.providedBy(package[name]) ]
+    valid_objects = [name
+                     for name in package
+                     if object_type.providedBy(package[name])]
     if valid_objects:
         return None
     name = object_name
@@ -73,8 +73,7 @@ def ensureUtility(root_folder, interface, utility_type,
     if len(utils) == 0:
         return addConfigureUtility(
             root_folder, interface, utility_type, utility_factory,
-            name, asObject, **kw
-            )
+            name, asObject, **kw)
     else:
         return None
 
@@ -94,7 +93,7 @@ def addConfigureUtility(
 
 def addUtility(root_folder, utility_type, utility_factory,
                asObject=_marker, **kw):
-    """ Add a Utility to the root folder's site manager.
+    """Add a Utility to the root folder's site manager.
 
     The utility is added to the default package and activated.
     """
@@ -125,7 +124,7 @@ def getSiteManagerDefault(root_folder):
 
 
 def getInformationFromEvent(event):
-    """ Extracts information from the event
+    """Extract information from the event
 
     Return a tuple containing
 
@@ -151,7 +150,6 @@ def bootStrapSubscriber(event):
     root folder exists and has a site manager.  If it exists, nothing else
     is changed.  If no root folder exists, one is added.
     """
-
     db, connection, root, root_folder = getInformationFromEvent(event)
 
     if root_folder is None:
@@ -180,7 +178,7 @@ def checkSecurityPolicy(event):
     was refactored and now it needs to be included from site.zcml.
     """
     if getSecurityPolicy() is ParanoidSecurityPolicy:
-        logging.getLogger('zope.app.appsetup').warn(
+        logging.getLogger('zope.app.appsetup').warning(
             'Security policy is not configured.\n'
             'Please make sure that securitypolicy.zcml is included'
             ' in site.zcml immediately\n'
