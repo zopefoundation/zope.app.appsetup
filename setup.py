@@ -79,9 +79,6 @@ setup(
             'zope.testrunner',
         ]
     ),
-    setup_requires=[
-        'zope.testrunner',
-    ],
     install_requires=[
         'ZODB',
         'zdaemon',
