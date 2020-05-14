@@ -80,7 +80,6 @@ setup(
         ]
     ),
     setup_requires=[
-        'eggtestinfo',
         'zope.testrunner',
     ],
     install_requires=[
