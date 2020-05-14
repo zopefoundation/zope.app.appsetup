@@ -96,12 +96,6 @@ setup(
         'zope.site >= 4.0.0a1',
         'zope.traversing >= 4.0.0a2',
     ],
-    tests_require=[
-        'zope.componentvocabulary >= 2.0.0a1',
-        'zope.principalregistry >= 4.0.0a1',
-        'zope.testing >= 3.10',
-        'zope.testrunner',
-    ],
     include_package_data=True,
     zip_safe=False,
     entry_points="""
