@@ -102,8 +102,6 @@ setup(
         'zope.testing >= 3.10',
         'zope.testrunner',
     ],
-    test_suite='zope.app.appsetup.tests.test_suite',
-    test_loader='zope.testrunner.eggsupport:SkipLayers',
     include_package_data=True,
     zip_safe=False,
     entry_points="""
