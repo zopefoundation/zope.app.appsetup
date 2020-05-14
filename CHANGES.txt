@@ -4,7 +4,7 @@ Changelog
 4.2.0 (unreleased)
 ------------------
 
-- Remove eggtestinfo from setup.py, breaks installation.
+- Drop support for ``python setup.py test``.
 
 - Add support for Python 3.8.
 
