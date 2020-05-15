@@ -29,7 +29,7 @@ on stderr
 
 We need to pass a ZConfig configuration file as an argument
 
-    >>> run('-C', 'test.conf')
+    >>> run('-C', 'test.conf.txt')
     The application root is known as `root`.
 
 Now you have the root object from the open database available as a global
@@ -49,9 +49,9 @@ PYTHONINSPECT environment variable
 We have to do extra work to honor the PYTHONSTARTUP environment variable:
 
     >>> pythonstartup = os.path.join(os.path.dirname(debug.__file__),
-    ...                              'testdata', 'pythonstartup')
+    ...                              'testdata', 'pythonstartup.py')
     >>> os.environ['PYTHONSTARTUP'] = pythonstartup
-    >>> run('-C', 'test.conf')
+    >>> run('-C', 'test.conf.txt')
     The application root is known as `root`.
 
 You can see that our pythonstartup file was executed because it changed

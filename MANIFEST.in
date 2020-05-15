@@ -1,8 +1,21 @@
-include .coveragerc
+# Generated from:
+# https://github.com/zopefoundation/meta/tree/master/config/pure-python
+include *.rst
 include *.txt
-include bootstrap.py
 include buildout.cfg
-include MANIFEST.in
 include tox.ini
-include src/zope/app/appsetup/testdata/*
-recursive-include src *.zcml *.txt *.xml
+
+exclude MANIFEST.in
+
+recursive-include docs *.bat
+recursive-include docs *.py
+recursive-include docs *.rst
+recursive-include docs Makefile
+
+recursive-include src *.gif
+recursive-include src *.pt
+recursive-include src *.py
+recursive-include src *.rst
+recursive-include src *.txt
+recursive-include src *.xml
+recursive-include src *.zcml
