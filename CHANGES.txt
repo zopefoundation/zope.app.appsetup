@@ -4,6 +4,8 @@ Changelog
 4.2.0 (unreleased)
 ------------------
 
+- Drop support for ``python setup.py test``.
+
 - Add support for Python 3.8.
 
 - Drop support for Python 3.4.

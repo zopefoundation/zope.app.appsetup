@@ -79,10 +79,6 @@ setup(
             'zope.testrunner',
         ]
     ),
-    setup_requires=[
-        'eggtestinfo',
-        'zope.testrunner',
-    ],
     install_requires=[
         'ZODB',
         'zdaemon',
@@ -100,14 +96,6 @@ setup(
         'zope.site >= 4.0.0a1',
         'zope.traversing >= 4.0.0a2',
     ],
-    tests_require=[
-        'zope.componentvocabulary >= 2.0.0a1',
-        'zope.principalregistry >= 4.0.0a1',
-        'zope.testing >= 3.10',
-        'zope.testrunner',
-    ],
-    test_suite='zope.app.appsetup.tests.test_suite',
-    test_loader='zope.testrunner.eggsupport:SkipLayers',
     include_package_data=True,
     zip_safe=False,
     entry_points="""
