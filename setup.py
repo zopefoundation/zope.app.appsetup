@@ -34,17 +34,17 @@ setup(
     author_email='zope-dev@zope.org',
     description="Zope app setup helper",
     long_description=(
-        read('README.txt') +
+        read('README.rst') +
         '\n\n' +
         '.. contents::' +
         '\n\n' +
-        read('src', 'zope', 'app', 'appsetup', 'bootstrap.txt') +
+        read('src', 'zope', 'app', 'appsetup', 'bootstrap.rst') +
         '\n\n' +
-        read('src', 'zope', 'app', 'appsetup', 'debug.txt') +
+        read('src', 'zope', 'app', 'appsetup', 'debug.rst') +
         '\n\n' +
-        read('src', 'zope', 'app', 'appsetup', 'product.txt') +
+        read('src', 'zope', 'app', 'appsetup', 'product.rst') +
         '\n\n' +
-        read('CHANGES.txt')
+        read('CHANGES.rst')
     ),
     license='ZPL 2.1',
     keywords="zope3 app setup",
@@ -60,6 +60,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: Implementation',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',

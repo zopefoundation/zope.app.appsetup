@@ -4,7 +4,7 @@ Changelog
 4.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add support for Python 3.9.
 
 
 4.2.0 (2020-05-20)
