@@ -278,18 +278,18 @@ def test_suite():
     test = doctest.DocTestSuite('zope.app.appsetup.appsetup')
     test.layer = layer
     suite.addTest(test)
-    for filename in ['bootstrap.txt', 'product.txt']:
+    for filename in ['bootstrap.rst', 'product.rst']:
         test = doctest.DocFileSuite(filename,
                                     optionflags=dtflags,
                                     checker=checker)
         test.layer = layer
         suite.addTest(test)
 
-    test = doctest.DocFileSuite('debug.txt')
+    test = doctest.DocFileSuite('debug.rst')
     test.layer = DebugLayer(zope.app.appsetup)
     suite.addTest(test)
     suite.addTest(doctest.DocFileSuite(
-        'testlayer.txt',
+        'testlayer.rst',
         optionflags=dtflags))
 
     return suite
