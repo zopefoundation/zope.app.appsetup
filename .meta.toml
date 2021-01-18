@@ -13,3 +13,8 @@ with-appveyor = false
 
 [coverage]
 fail-under = 87
+
+[manifest]
+additional-rules = [
+    "recursive-include src *.xml",
+    ]
