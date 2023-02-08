@@ -14,12 +14,13 @@
 """Bootstrap code for sessions."""
 
 import transaction
-
-from zope.app.appsetup.bootstrap import ensureUtility, getInformationFromEvent
-
-from zope.session.interfaces import IClientIdManager, ISessionDataContainer
 from zope.session.http import CookieClientIdManager
+from zope.session.interfaces import IClientIdManager
+from zope.session.interfaces import ISessionDataContainer
 from zope.session.session import PersistentSessionDataContainer
+
+from zope.app.appsetup.bootstrap import ensureUtility
+from zope.app.appsetup.bootstrap import getInformationFromEvent
 
 
 def bootStrapSubscriber(event):

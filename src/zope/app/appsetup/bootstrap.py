@@ -17,13 +17,13 @@ This module contains code to bootstrap a Zope3 instance.  For example
 it makes sure a root folder exists and creates one if necessary.
 """
 import logging
-import transaction
 import warnings
+
+import transaction
 import zope.component.interfaces
 import zope.event
 import zope.lifecycleevent
 import zope.processlifetime
-
 from zope.app.publication.zopepublication import ZopePublication
 from zope.container.interfaces import INameChooser
 from zope.security.management import getSecurityPolicy
@@ -31,6 +31,7 @@ from zope.security.simplepolicies import ParanoidSecurityPolicy
 from zope.site import site
 from zope.site.folder import rootFolder
 from zope.traversing.api import traverse
+
 
 _marker = object()
 

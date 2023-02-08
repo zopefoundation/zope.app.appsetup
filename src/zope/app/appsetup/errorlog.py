@@ -14,11 +14,11 @@
 """Bootstrap code for error reporting utility."""
 
 import transaction
-
 from zope.error.error import RootErrorReportingUtility
 from zope.error.interfaces import IErrorReportingUtility
 
-from zope.app.appsetup.bootstrap import ensureUtility, getInformationFromEvent
+from zope.app.appsetup.bootstrap import ensureUtility
+from zope.app.appsetup.bootstrap import getInformationFromEvent
 
 
 def bootStrapSubscriber(event):

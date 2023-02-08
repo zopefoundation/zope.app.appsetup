@@ -12,8 +12,10 @@
 #
 ##############################################################################
 """Zope Application Server setup package."""
-from zope.app.appsetup.appsetup import config, database  # noqa: F401
-
+from zope.app.appsetup.appsetup import config  # noqa: F401
+from zope.app.appsetup.appsetup import database  # noqa: F401
 # BBB
-from zope.app.appsetup.interfaces import IDatabaseOpenedEvent, DatabaseOpened  # noqa: F401,E501
-from zope.app.appsetup.interfaces import IProcessStartingEvent, ProcessStarting  # noqa: F401,E501
+from zope.app.appsetup.interfaces import DatabaseOpened  # noqa: F401,E501
+from zope.app.appsetup.interfaces import IDatabaseOpenedEvent  # noqa: F401
+from zope.app.appsetup.interfaces import IProcessStartingEvent  # noqa: F401
+from zope.app.appsetup.interfaces import ProcessStarting  # noqa: F401

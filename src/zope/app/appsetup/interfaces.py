@@ -16,12 +16,13 @@
 $Id$
 """
 # BBB imports
-from zope.processlifetime import IDatabaseOpened
 from zope.processlifetime import DatabaseOpened  # noqa: F401
-from zope.processlifetime import IDatabaseOpenedWithRoot
 from zope.processlifetime import DatabaseOpenedWithRoot  # noqa: F401
+from zope.processlifetime import IDatabaseOpened
+from zope.processlifetime import IDatabaseOpenedWithRoot
 from zope.processlifetime import IProcessStarting
 from zope.processlifetime import ProcessStarting  # noqa: F401
+
 
 # BBB aliases
 IDatabaseOpenedEvent = IDatabaseOpened

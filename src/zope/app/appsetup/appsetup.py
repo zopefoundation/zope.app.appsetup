@@ -14,12 +14,12 @@
 """Code to initialize the application server."""
 import ZODB.ActivityMonitor
 import ZODB.interfaces
-import zope.interface
 import zope.component
 import zope.component.hooks
+import zope.interface
+import zope.processlifetime
 from zope.security.interfaces import IParticipation
 from zope.security.management import system_user
-import zope.processlifetime
 
 
 @zope.interface.implementer(IParticipation)
@@ -92,8 +92,8 @@ def config(file, features=(), execute=True):
     if _configured:
         return
 
-    from zope.configuration import xmlconfig, config
-
+    from zope.configuration import config
+    from zope.configuration import xmlconfig
     # Set user to system_user, so we can do anything we want
     from zope.security.management import newInteraction
     newInteraction(SystemConfigurationParticipation())
@@ -135,8 +135,8 @@ def database(db):
                 from ZODB.DB import DB
                 db = DB(storage, cache_size=4000)
         elif db.endswith(".fs"):
-            from ZODB.FileStorage import FileStorage
             from ZODB.DB import DB
+            from ZODB.FileStorage import FileStorage
             storage = FileStorage(db)
             db = DB(storage, cache_size=4000)
 

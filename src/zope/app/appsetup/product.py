@@ -1,6 +1,8 @@
 """Access to product-specific configuration."""
-import ZConfig
 import os.path
+
+import ZConfig
+
 
 _configs = {}
 _schema = None

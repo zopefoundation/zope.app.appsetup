@@ -12,17 +12,17 @@
 #
 ##############################################################################
 
-from ZODB.DB import DB
-from ZODB.DemoStorage import DemoStorage
+import transaction
 import ZODB.ActivityMonitor
 import ZODB.interfaces
-import transaction
-
-from zope import component
+import zope.processlifetime
+from ZODB.DB import DB
+from ZODB.DemoStorage import DemoStorage
 from zope.app.publication.zopepublication import ZopePublication
 from zope.component.testlayer import ZCMLFileLayer
 from zope.event import notify
-import zope.processlifetime
+
+from zope import component
 
 
 def createTestDB(name='main', base=None):
