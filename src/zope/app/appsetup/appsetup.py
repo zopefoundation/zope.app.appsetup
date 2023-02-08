@@ -23,7 +23,7 @@ from zope.security.management import system_user
 
 
 @zope.interface.implementer(IParticipation)
-class SystemConfigurationParticipation(object):
+class SystemConfigurationParticipation:
 
     principal = system_user
     interaction = None

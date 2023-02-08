@@ -14,19 +14,12 @@
 """Bootstrap tests"""
 import doctest
 import os
-import re
 import sys
 import unittest
+from urllib.request import pathname2url
 
 import transaction
 import ZConfig
-
-
-try:
-    from urllib.request import pathname2url
-except ImportError:
-    from urllib import pathname2url
-
 import zope.component
 from ZODB.MappingStorage import DB
 from zope.app.publication.zopepublication import ZopePublication
@@ -40,7 +33,6 @@ from zope.site.folder import Folder
 from zope.site.folder import rootFolder
 from zope.site.interfaces import IRootFolder
 from zope.site.site import LocalSiteManager
-from zope.testing import renormalizing
 from zope.traversing.api import getPath
 from zope.traversing.api import traverse
 
@@ -57,7 +49,7 @@ from zope.app.appsetup.session import \
 layer = ZCMLFileLayer(zope.app.appsetup)
 
 
-class EventStub(object):
+class EventStub:
 
     def __init__(self, db):
         self.database = db
@@ -243,7 +235,7 @@ class TestConfigurationSchema(unittest.TestCase):
 class DebugLayer(ZCMLFileLayer):
 
     def setUp(self):
-        super(DebugLayer, self).setUp()
+        super().setUp()
         self.stderr = sys.stderr
         self.argv = list(sys.argv)
         self.olddir = os.getcwd()
@@ -263,19 +255,15 @@ class DebugLayer(ZCMLFileLayer):
             del os.environ['PYTHONINSPECT']
         from zope.security.management import endInteraction
         endInteraction()
-        super(DebugLayer, self).tearDown()
+        super().tearDown()
 
 
 def test_suite():
+    loadTestsFromTestCase = unittest.defaultTestLoader.loadTestsFromTestCase
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestBootstrapSubscriber))
-    suite.addTest(unittest.makeSuite(TestConfigurationSchema))
+    suite.addTest(loadTestsFromTestCase(TestBootstrapSubscriber))
+    suite.addTest(loadTestsFromTestCase(TestConfigurationSchema))
 
-    rules = [
-        (re.compile("u('.*?')"), r"\1"),
-        (re.compile('u(".*?")'), r"\1"),
-    ]
-    checker = renormalizing.RENormalizing(rules)
     dtflags = (
         doctest.ELLIPSIS
         | doctest.NORMALIZE_WHITESPACE
@@ -285,9 +273,7 @@ def test_suite():
     test.layer = layer
     suite.addTest(test)
     for filename in ['bootstrap.rst', 'product.rst']:
-        test = doctest.DocFileSuite(filename,
-                                    optionflags=dtflags,
-                                    checker=checker)
+        test = doctest.DocFileSuite(filename, optionflags=dtflags)
         test.layer = layer
         suite.addTest(test)
 
