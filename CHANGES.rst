@@ -4,11 +4,9 @@ Changelog
 5.0 (unreleased)
 ----------------
 
-- Add support for Python 3.10, 3.11.
+- Add support for Python 3.9, 3.10, 3.11.
 
 - Drop support for Python 2.7, 3.5, 3.6.
-
-- Add support for Python 3.9.
 
 
 4.2.0 (2020-05-20)
