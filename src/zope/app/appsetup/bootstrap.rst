@@ -54,7 +54,6 @@ Now the maintainers of existing 3.0 sites need to manually update
 their site.zcml to include securitypolicy.zcml while upgrading to 3.1.
 See also http://www.zope.org/Collectors/Zope3-dev/381 .
 
-    >>> from __future__ import print_function
     >>> from zope.testing.loggingsupport import InstalledHandler
     >>> handler = InstalledHandler('zope.app.appsetup')
 

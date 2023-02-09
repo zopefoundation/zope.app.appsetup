@@ -15,17 +15,20 @@
 
 $Id$
 """
-from __future__ import print_function
+
+
 __docformat__ = 'restructuredtext'
 
-from zope.app.publication.zopepublication import ZopePublication
 import os
 import sys
+
 import zdaemon.zdoptions
-import zope.app.appsetup.appsetup
-import zope.app.appsetup.product
 import zope.event
 import zope.processlifetime
+from zope.app.publication.zopepublication import ZopePublication
+
+import zope.app.appsetup.appsetup
+import zope.app.appsetup.product
 
 
 def load_options(args=None):

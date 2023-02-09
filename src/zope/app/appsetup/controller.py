@@ -34,7 +34,7 @@ class ZopectlCmd(zdaemon.zdctl.ZDCmd):
         print("         debugger object at an interactive Python prompt.")
 
     def do_run(self, arg):
-        cmdline = "%s %s" % (
+        cmdline = "{} {}".format(
             os.path.join(INSTANCE_HOME, 'bin', 'scriptzope'), arg)
         os.system(cmdline)
 

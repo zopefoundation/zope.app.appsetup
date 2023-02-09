@@ -4,6 +4,7 @@ Sample section data type for product configuration tests.
 """
 
 import ZConfig.components.basic.mapping
+
 import zope.app.appsetup.product
 
 

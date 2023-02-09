@@ -12,17 +12,17 @@
 #
 ##############################################################################
 
-from ZODB.DB import DB
-from ZODB.DemoStorage import DemoStorage
+import transaction
 import ZODB.ActivityMonitor
 import ZODB.interfaces
-import transaction
-
-from zope import component
+import zope.processlifetime
+from ZODB.DB import DB
+from ZODB.DemoStorage import DemoStorage
 from zope.app.publication.zopepublication import ZopePublication
 from zope.component.testlayer import ZCMLFileLayer
 from zope.event import notify
-import zope.processlifetime
+
+from zope import component
 
 
 def createTestDB(name='main', base=None):
@@ -76,7 +76,7 @@ class ZODBLayer(ZCMLFileLayer):
             self.db = None
 
     def setUp(self):
-        super(ZODBLayer, self).setUp()
+        super().setUp()
         self.db = createTestDB(self.db_name)
         self.base_storage = self.db._storage
         self._base_db_open = True
@@ -88,9 +88,9 @@ class ZODBLayer(ZCMLFileLayer):
             # that we needed for performing global setup now.
             self._close_db()
             self._base_db_open = False
-        super(ZODBLayer, self).testSetUp()
+        super().testSetUp()
         self.db = createTestDB(self.db_name, self.base_storage)
 
     def testTearDown(self):
         self._close_db()
-        super(ZODBLayer, self).testTearDown()
+        super().testTearDown()

@@ -12,46 +12,44 @@
 #
 ##############################################################################
 """Bootstrap tests"""
-import ZConfig
 import doctest
 import os
 import sys
-import re
-import transaction
 import unittest
-try:
-    from urllib.request import pathname2url
-except ImportError:
-    from urllib import pathname2url
+from urllib.request import pathname2url
 
+import transaction
+import ZConfig
 import zope.component
-
 from ZODB.MappingStorage import DB
-from zope.traversing.api import traverse, getPath
-from zope.error.interfaces import IErrorReportingUtility
-from zope.error.error import ErrorReportingUtility
-
-from zope.site.folder import rootFolder, Folder
-from zope.site.interfaces import IRootFolder
 from zope.app.publication.zopepublication import ZopePublication
+from zope.component.testlayer import ZCMLFileLayer
+from zope.error.error import ErrorReportingUtility
+from zope.error.interfaces import IErrorReportingUtility
+from zope.processlifetime import DatabaseOpened
+from zope.session.interfaces import IClientIdManager
+from zope.session.interfaces import ISessionDataContainer
+from zope.site.folder import Folder
+from zope.site.folder import rootFolder
+from zope.site.interfaces import IRootFolder
 from zope.site.site import LocalSiteManager
+from zope.traversing.api import getPath
+from zope.traversing.api import traverse
 
 import zope.app.appsetup
 from zope.app.appsetup.bootstrap import bootStrapSubscriber
-from zope.app.appsetup.bootstrap import getInformationFromEvent, ensureUtility
-from zope.processlifetime import DatabaseOpened
-from zope.app.appsetup.errorlog import bootStrapSubscriber as errorlogBootStrapSubscriber  # noqa: E501
-from zope.app.appsetup.session import bootStrapSubscriber as sessionBootstrapSubscriber  # noqa: E501
-from zope.session.interfaces import IClientIdManager
-from zope.session.interfaces import ISessionDataContainer
-from zope.testing import renormalizing
+from zope.app.appsetup.bootstrap import ensureUtility
+from zope.app.appsetup.bootstrap import getInformationFromEvent
+from zope.app.appsetup.errorlog import \
+    bootStrapSubscriber as errorlogBootStrapSubscriber
+from zope.app.appsetup.session import \
+    bootStrapSubscriber as sessionBootstrapSubscriber
 
-from zope.component.testlayer import ZCMLFileLayer
 
 layer = ZCMLFileLayer(zope.app.appsetup)
 
 
-class EventStub(object):
+class EventStub:
 
     def __init__(self, db):
         self.database = db
@@ -237,7 +235,7 @@ class TestConfigurationSchema(unittest.TestCase):
 class DebugLayer(ZCMLFileLayer):
 
     def setUp(self):
-        super(DebugLayer, self).setUp()
+        super().setUp()
         self.stderr = sys.stderr
         self.argv = list(sys.argv)
         self.olddir = os.getcwd()
@@ -257,19 +255,15 @@ class DebugLayer(ZCMLFileLayer):
             del os.environ['PYTHONINSPECT']
         from zope.security.management import endInteraction
         endInteraction()
-        super(DebugLayer, self).tearDown()
+        super().tearDown()
 
 
 def test_suite():
+    loadTestsFromTestCase = unittest.defaultTestLoader.loadTestsFromTestCase
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestBootstrapSubscriber))
-    suite.addTest(unittest.makeSuite(TestConfigurationSchema))
+    suite.addTest(loadTestsFromTestCase(TestBootstrapSubscriber))
+    suite.addTest(loadTestsFromTestCase(TestConfigurationSchema))
 
-    rules = [
-        (re.compile("u('.*?')"), r"\1"),
-        (re.compile('u(".*?")'), r"\1"),
-    ]
-    checker = renormalizing.RENormalizing(rules)
     dtflags = (
         doctest.ELLIPSIS
         | doctest.NORMALIZE_WHITESPACE
@@ -279,9 +273,7 @@ def test_suite():
     test.layer = layer
     suite.addTest(test)
     for filename in ['bootstrap.rst', 'product.rst']:
-        test = doctest.DocFileSuite(filename,
-                                    optionflags=dtflags,
-                                    checker=checker)
+        test = doctest.DocFileSuite(filename, optionflags=dtflags)
         test.layer = layer
         suite.addTest(test)
 

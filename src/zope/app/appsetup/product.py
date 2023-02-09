@@ -1,6 +1,8 @@
 """Access to product-specific configuration."""
-import ZConfig
 import os.path
+
+import ZConfig
+
 
 _configs = {}
 _schema = None
@@ -58,11 +60,11 @@ def loadConfiguration(file, url=None):
         path = os.path.join(here, "schema", "productconfig.xml")
         _schema = ZConfig.loadSchema(path)
     data, handlers = ZConfig.loadConfigFile(_schema, file, url=url)
-    return dict((sect.getSectionName(), sect.mapping)
-                for sect in data.product_config)
+    return {sect.getSectionName(): sect.mapping
+            for sect in data.product_config}
 
 
-class FauxConfiguration(object):
+class FauxConfiguration:
     """Configuration object that can be use from tests.
 
     An instance is of this is similar to a <product-config> section from a

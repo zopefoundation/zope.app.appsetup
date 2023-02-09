@@ -184,7 +184,7 @@ objects.
 
 Let's create some sample configuration text:
 
-    >>> product_config = u'''
+    >>> product_config = '''
     ... <product-config product1>
     ...   key1 product1-value1
     ...   key2 product1-value2
@@ -205,14 +205,14 @@ We can now load the configuration using the ``loadConfiguration`` function:
     >>> config = product.loadConfiguration(sio)
 
     >>> pprint.pprint(config, width=1)
-    {u'product1': {'key1': 'product1-value1',
+    {'product1': {'key1': 'product1-value1',
                    'key2': 'product1-value2'},
-     u'product2': {'key1': 'product2-value1',
+     'product2': {'key1': 'product2-value1',
                    'key3': 'product2-value2'}}
 
 Extensions that provide product configurations can be used as well:
 
-    >>> product_config = u'''
+    >>> product_config = '''
     ... %import zope.app.appsetup.testproduct
     ...
     ... <testproduct foobar>
@@ -228,7 +228,7 @@ Extensions that provide product configurations can be used as well:
     >>> config = product.loadConfiguration(sio)
 
     >>> pprint.pprint(config, width=1)
-    {u'barfoo': {'key1': 'value1',
+    {'barfoo': {'key1': 'value1',
                  'key2': 'value2',
-                 'product-name': u'barfoo'},
-     u'foobar': {'product-name': u'foobar'}}
+                 'product-name': 'barfoo'},
+     'foobar': {'product-name': 'foobar'}}
