@@ -32,7 +32,7 @@ def read(*rnames):
 setup(
     name='zope.app.appsetup',
     version='5.1.dev0',
-    author='Zope Corporation and Contributors',
+    author='Zope Foundation and Contributors',
     author_email='zope-dev@zope.dev',
     description="Zope app setup helper",
     long_description=(
@@ -48,7 +48,7 @@ setup(
         '\n\n' +
         read('CHANGES.rst')
     ),
-    license='ZPL 2.1',
+    license='ZPL-2.1',
     keywords="zope3 app setup",
     classifiers=[
         'Development Status :: 5 - Production/Stable',
@@ -56,11 +56,11 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Zope Public License',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
         'Programming Language :: Python :: Implementation',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
@@ -73,7 +73,7 @@ setup(
     packages=find_packages('src'),
     package_dir={'': 'src'},
     namespace_packages=['zope', 'zope.app'],
-    python_requires='>=3.7',
+    python_requires='>=3.9',
     extras_require=dict(
         test=[
             'zope.componentvocabulary >= 2.0.0a1',

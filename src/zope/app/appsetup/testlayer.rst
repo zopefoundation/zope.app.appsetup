@@ -47,8 +47,7 @@ working database::
 
 We define a suite with our test:
 
-  >>> suite = unittest.TestSuite()
-  >>> suite.addTest(unittest.makeSuite(TestCase))
+  >>> suite = unittest.defaultTestLoader.loadTestsFromTestCase(TestCase)
 
 And run that suite:
 
@@ -100,8 +99,8 @@ database but is still isolated from other tests' changes:
 
 Run the tests to prove that above statements are correct::
 
-  >>> suite = unittest.TestSuite()
-  >>> suite.addTest(unittest.makeSuite(CustomZODBLayerTests))
+  >>> suite = unittest.defaultTestLoader.loadTestsFromTestCase(
+  ...     CustomZODBLayerTests)
 
 And run that suite:
 
