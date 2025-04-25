@@ -9,7 +9,7 @@ _schema = None
 
 try:
     import zope.testing.cleanup
-except ImportError:
+except ModuleNotFoundError:
     pass
 else:
     zope.testing.cleanup.addCleanUp(_configs.clear)

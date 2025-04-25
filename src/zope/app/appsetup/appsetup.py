@@ -249,7 +249,7 @@ def reset():
 
 try:
     import zope.testing.cleanup
-except ImportError:
+except ModuleNotFoundError:
     pass
 else:
     zope.testing.cleanup.addCleanUp(reset)
