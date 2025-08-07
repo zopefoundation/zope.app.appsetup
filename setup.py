@@ -20,7 +20,6 @@
 """
 import os
 
-from setuptools import find_packages
 from setuptools import setup
 
 
@@ -70,16 +69,13 @@ setup(
         'Framework :: Zope :: 3',
     ],
     url='https://github.com/zopefoundation/zope.app.appsetup',
-    packages=find_packages('src'),
-    package_dir={'': 'src'},
-    namespace_packages=['zope', 'zope.app'],
     python_requires='>=3.9',
     extras_require=dict(
         test=[
             'zope.componentvocabulary >= 2.0.0a1',
             'zope.principalregistry >= 4.0.0a1',
             'zope.testing >= 3.10',
-            'zope.testrunner',
+            'zope.testrunner >= 6.4',
         ]
     ),
     install_requires=[
