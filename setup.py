@@ -55,11 +55,11 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Zope Public License',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.9',
-        'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
         'Programming Language :: Python :: 3.13',
+        'Programming Language :: Python :: 3.14',
+        'Programming Language :: Python :: 3.15',
         'Programming Language :: Python :: Implementation',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
@@ -69,7 +69,7 @@ setup(
         'Framework :: Zope :: 3',
     ],
     url='https://github.com/zopefoundation/zope.app.appsetup',
-    python_requires='>=3.9',
+    python_requires='>=3.11',
     extras_require=dict(
         test=[
             'zope.componentvocabulary >= 2.0.0a1',
