@@ -59,4 +59,3 @@ the prompt
 
     >>> sys.ps1
     'debug> '
-
